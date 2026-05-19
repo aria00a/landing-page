@@ -305,54 +305,34 @@
         </a>
     </div>
 
-    <!-- Instagram Embeds Grid -->
-    <!-- 
-        CARA GANTI POSTINGAN:
-        1. Buka postingan di Instagram
-        2. Klik titik tiga (⋯) → Embed → Copy embed code
-        3. Ganti seluruh <blockquote>...</blockquote> di bawah dengan embed code kamu
-    -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Post 1 — ganti blockquote ini -->
-        <div class="instagram-embed-wrapper">
-            <blockquote
-                class="instagram-media"
-                data-instgrm-captioned
-                data-instgrm-permalink="https://www.instagram.com/p/GANTI_DENGAN_ID_POST_1/"
-                data-instgrm-version="14"
-                style="border:0; border-radius:12px; box-shadow: 0 4px 20px rgba(111,89,87,0.08); margin:0; max-width:100%; width:100%;">
-            </blockquote>
+    <!-- Instagram Feed via iframe — otomatis tampil post terbaru -->
+    <div class="flex justify-center">
+        <div class="w-full max-w-2xl rounded-2xl overflow-hidden ambient-shadow"
+             style="box-shadow: 0 8px 32px rgba(111,89,87,0.10);">
+            <iframe
+                id="ig-embed-frame"
+                src=""
+                style="width:100%; height:600px; border:none; display:block;"
+                scrolling="no"
+                allowtransparency="true"
+                title="Instagram Feed @tokbung_id.florist">
+            </iframe>
         </div>
-
-        <!-- Post 2 — ganti blockquote ini -->
-        <div class="instagram-embed-wrapper">
-            <blockquote
-                class="instagram-media"
-                data-instgrm-captioned
-                data-instgrm-permalink="https://www.instagram.com/p/GANTI_DENGAN_ID_POST_2/"
-                data-instgrm-version="14"
-                style="border:0; border-radius:12px; box-shadow: 0 4px 20px rgba(111,89,87,0.08); margin:0; max-width:100%; width:100%;">
-            </blockquote>
-        </div>
-
-        <!-- Post 3 — ganti blockquote ini -->
-        <div class="instagram-embed-wrapper">
-            <blockquote
-                class="instagram-media"
-                data-instgrm-captioned
-                data-instgrm-permalink="https://www.instagram.com/p/GANTI_DENGAN_ID_POST_3/"
-                data-instgrm-version="14"
-                style="border:0; border-radius:12px; box-shadow: 0 4px 20px rgba(111,89,87,0.08); margin:0; max-width:100%; width:100%;">
-            </blockquote>
-        </div>
-
     </div>
 </div>
 </section>
 
-<!-- Instagram Embed Script (wajib ada, cukup sekali) -->
-<script async src="//www.instagram.com/embed.js"></script>
+<script>
+    // Inject iframe src dengan domain aktual saat halaman load
+    // Ini diperlukan karena parameter "rd" harus sesuai dengan domain yang dipakai
+    (function() {
+        const username = 'tokbung_id.florist';
+        const frame = document.getElementById('ig-embed-frame');
+        const domain = encodeURIComponent(window.location.origin);
+        const path   = encodeURIComponent(window.location.pathname);
+        frame.src = `https://www.instagram.com/${username}/embed/?cr=1&v=14&wp=640&rd=${domain}&rp=${path}`;
+    })();
+</script>
 
 <!-- Footer -->
 <footer class="bg-surface-container-low py-stack-md px-margin-mobile md:px-margin-desktop">
