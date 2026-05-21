@@ -153,7 +153,7 @@
 <header class="pt-32 pb-stack-lg px-margin-mobile md:px-margin-desktop bg-surface-container-low overflow-hidden">
 <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 items-center gap-12">
 <div class="md:col-span-6 space-y-6" data-aos="fade-up">
-<p class="font-label-caps text-label-caps text-primary tracking-[0.2em]">Elegance in Bloom</p>
+<p class="font-label-caps text-label-caps text-primary tracking-[0.2em]">===</p>
 <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary leading-tight">
     Petals &amp; Poetry
 </h1>
@@ -191,58 +191,191 @@
 <div class="max-w-container-max mx-auto">
 <div class="flex flex-col md:flex-row justify-between items-end mb-stack-md gap-4">
 <div>
-<p class="font-label-caps text-label-caps text-secondary mb-2">Our Curated Selection</p>
+<p class="font-label-caps text-label-caps text-secondary mb-2">===</p>
 <h2 class="font-headline-lg text-headline-lg text-primary">Koleksi Signature</h2>
 </div>
 <div class="flex gap-2">
-<button class="p-2 border border-outline-variant rounded-full text-on-surface-variant hover:border-primary hover:text-primary transition-all">
-<span class="material-symbols-outlined">west</span>
-</button>
-<button class="p-2 border border-outline-variant rounded-full text-on-surface-variant hover:border-primary hover:text-primary transition-all">
-<span class="material-symbols-outlined">east</span>
-</button>
+    <button id="btn-prev" class="p-2 border border-outline-variant rounded-full text-on-surface-variant hover:border-primary hover:text-primary transition-all disabled:opacity-30 disabled:cursor-not-allowed">
+        <span class="material-symbols-outlined">west</span>
+    </button>
+    <button id="btn-next" class="p-2 border border-outline-variant rounded-full text-on-surface-variant hover:border-primary hover:text-primary transition-all disabled:opacity-30 disabled:cursor-not-allowed">
+        <span class="material-symbols-outlined">east</span>
+    </button>
 </div>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-<!-- Product 1 -->
-<div class="group bg-surface-container-lowest p-4 rounded-xl ambient-shadow transition-transform duration-500 hover:-translate-y-2">
-<div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
-<img alt="Bouquet Plastik" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMf8Amnc7GOUdFeYAO8mDmK73wwhH6yssAEt7tCnJ7HjFqZ-NObMNI1_4GUcFsb_-czp3DefBSP5PKWzkEfy1gUVajHqk8bN9i-58m5VITzmZjUQwtWe_DFqdWW_1uaoJxuruh_ep-7-hlIph2Qv0eicFy7DduuRzx4yQmu0oF7yNONccChsbtb3DtgBt25xII3oTayeQYTLEQcjvuHrAwSbVZqyB58etdGoD-o9joErXc9nj0c7OnG9sQNTbGXSI8Zw36-BTTfpE"/>
+
+<!-- Slider wrapper -->
+<div class="overflow-hidden">
+    <div id="product-slider" class="flex gap-6 transition-transform duration-500 ease-in-out">
+
+        <!--
+        =======================================================
+          PANDUAN GANTI GAMBAR & INFO PRODUK
+        =======================================================
+          Semua gambar disimpan di folder: content/
+          Contoh: content/a-01.jpg, content/a-02.jpg, dst.
+
+          Untuk setiap produk, yang bisa kamu ubah:
+            [IMG]   → src="content/NAMA-FILE.jpg"
+            [LABEL] → kategori kecil di atas (huruf kapital)
+            [NAMA]  → nama produk
+            [HARGA] → harga produk
+
+          Untuk tambah produk: copy satu blok produk,
+          paste setelah produk terakhir, ganti isinya.
+        =======================================================
+        -->
+
+        <!-- ======= PRODUK 1 ======= -->
+        <div class="product-card flex-shrink-0 w-[calc(25%-18px)] bg-surface-container-lowest p-4 rounded-xl ambient-shadow transition-transform duration-500 hover:-translate-y-2 group">
+        <div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
+            <img
+                src="content/a-01.jpeg"
+                alt="Bouquet Bunga Plastik"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+        </div>
+        <p class="font-label-caps text-[10px] text-tertiary mb-1">KARANGAN BUNGA</p>
+        <h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-2">Papan Ucapan (Standard) + Bunga Atas</h3>
+        <p class="font-label-caps text-label-caps text-primary">Rp 500.000</p>
+        </div>
+
+        <!-- ======= PRODUK 2 ======= -->
+        <div class="product-card flex-shrink-0 w-[calc(25%-18px)] bg-surface-container-lowest p-4 rounded-xl ambient-shadow transition-transform duration-500 hover:-translate-y-2 group">
+        <div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
+            <img
+                src="content/a-02.jpeg"
+                alt="Hampers Eksklusif"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+        </div>
+        <p class="font-label-caps text-[10px] text-tertiary mb-1">KARANGAN BUNGA</p>
+        <h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-2">Papan Ucapan (2×1.5) + Bunga Atas Bawah + Kupingan Kiri Kanan</h3>
+        <p class="font-label-caps text-label-caps text-primary">Rp 850.000</p>
+        </div>
+
+        <!-- ======= PRODUK 3 ======= -->
+        <div class="product-card flex-shrink-0 w-[calc(25%-18px)] bg-surface-container-lowest p-4 rounded-xl ambient-shadow transition-transform duration-500 hover:-translate-y-2 group">
+        <div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
+            <img
+                src="content/a-03.jpeg"
+                alt="Papan Bunga"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+        </div>
+        <p class="font-label-caps text-[10px] text-tertiary mb-1">SPECIAL HANDBOUQET</p>
+        <h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-2">Full White Rose's</h3>
+        <p class="font-label-caps text-label-caps text-primary">Rp 870.000</p>
+        </div>
+
+        <!-- ======= PRODUK 4 ======= -->
+        <div class="product-card flex-shrink-0 w-[calc(25%-18px)] bg-surface-container-lowest p-4 rounded-xl ambient-shadow transition-transform duration-500 hover:-translate-y-2 group">
+        <div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
+            <img
+                src="content/a-04.jpeg"
+                alt="Dekorasi Meja"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+        </div>
+        <p class="font-label-caps text-[10px] text-tertiary mb-1">SPECIAL HANDBOUQET</p>
+        <h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-2">Love White Mix Red Rose's</h3>
+        <p class="font-label-caps text-label-caps text-primary">Rp 1.240.000</p>
+        </div>
+
+        <!-- ======= PRODUK 5 ======= -->
+        <div class="product-card flex-shrink-0 w-[calc(25%-18px)] bg-surface-container-lowest p-4 rounded-xl ambient-shadow transition-transform duration-500 hover:-translate-y-2 group">
+        <div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
+            <img
+                src="content/a-05.jpeg"
+                alt="Produk 5"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+        </div>
+        <p class="font-label-caps text-[10px] text-tertiary mb-1">BLOOMBOX FLOWER</p>
+        <h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-2">Special Sexy Rose's</h3>
+        <p class="font-label-caps text-label-caps text-primary">Rp 1.300.000</p>
+        </div>
+
+    </div>
 </div>
-<p class="font-label-caps text-[10px] text-tertiary mb-1">BOUQUET ARTIFICIAL</p>
-<h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-2">Bouquet Bunga Plastik</h3>
-<p class="font-label-caps text-label-caps text-primary">Rp 450.000</p>
-</div>
-<!-- Product 2 -->
-<div class="group bg-surface-container-lowest p-4 rounded-xl ambient-shadow transition-transform duration-500 hover:-translate-y-2">
-<div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
-<img alt="Hampers Eksklusif" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8_JPynP5qvM6UioL99w-6Uc0MKrlOMRi0udeC8M6f6fVvs7-R94Yxf4LBb2TfomfdybmKTo2p2dVSUsc5o1nPL_ZTFkQByuKhZ8qD66pNEdv0WUWJSoIA_Je8lxloikg1qAWobVqkn87Eff_HqawtOamBTyNFecX6kGEzy6bRtFK_R57aEQmx_XyqRBF1yuk0qxmqI7pq_Tmy7imD5TA1cNGXQHkRxGtePeG76RxP-c0ARNV1QssngcEkKIP3qZaQKib0mz-CJkk"/>
-</div>
-<p class="font-label-caps text-[10px] text-tertiary mb-1">GIFT SETS</p>
-<h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-2">Hampers lebaran dan lain-lain</h3>
-<p class="font-label-caps text-label-caps text-primary">Rp 850.000</p>
-</div>
-<!-- Product 3 -->
-<div class="group bg-surface-container-lowest p-4 rounded-xl ambient-shadow transition-transform duration-500 hover:-translate-y-2">
-<div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
-<img alt="Papan Bunga" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC36xRS8WCPYyI9JE09KJKNSFDoRU2lM4tfuJA6fdM79HESwisxIAnot8N0BIF9O6l9p7IOKK1uO7DZ_ckLT78ia96EHZnzgnfqG9R30gqAEkH5-mywn6IUCXH5XoXlYs1SAcnGF4sQwBobSVVADLyTyQlpmmDnHCj6uZiw2oxuYdYg4uMf8o5Ff-Q49TpbiI_PdpGApK8mgbpmR41yHezNKFNaV_AJI1Nxm31dTKZEDSf8Uv4KgcX0bakjkN7H2C7Sp7JXGZ-X2lg"/>
-</div>
-<p class="font-label-caps text-[10px] text-tertiary mb-1">GRAND CELEBRATION</p>
-<h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-2">Papan bunga mantap</h3>
-<p class="font-label-caps text-label-caps text-primary">Rp 1.200.000</p>
-</div>
-<!-- Product 4 -->
-<div class="group bg-surface-container-lowest p-4 rounded-xl ambient-shadow transition-transform duration-500 hover:-translate-y-2">
-<div class="aspect-[3/4] rounded-lg overflow-hidden mb-4 bg-surface-container">
-<img alt="Dekorasi Meja" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB66B3v-Nant3WA6f4Q3SeiFRE4Lu9MdGv5Mlhaotn7It6RU4-8V9pn8JnbAORbiRpnSg4rv8v_GkPbEvmoji7sTXyxMtXCrFKYu_PVX7WoM7U1ElEs53vZF9YTreRev13FS8tQ48diGBO7SK8Kx3f_Pno7ZN4bkH_XgTZpeMofiSOLX4b0FbC9m-RA8PdcChcU0S5a43vG6I2FLQaUMV3V53cHbCgfSGsao3WiWf5SDE3qkL2rSLAmmmHKyCa_6m3UMcCK7cHWhmU"/>
-</div>
-<p class="font-label-caps text-[10px] text-tertiary mb-1">INTERIOR DECOR</p>
-<h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-2">Bunga yang bisa diletakkan di vas</h3>
-<p class="font-label-caps text-label-caps text-primary">Rp 350.000</p>
-</div>
-</div>
+
+<!-- Dot indicators -->
+<div id="slider-dots" class="flex justify-center gap-2 mt-6"></div>
+
 </div>
 </section>
+
+<script>
+(function () {
+    const slider   = document.getElementById('product-slider');
+    const btnPrev  = document.getElementById('btn-prev');
+    const btnNext  = document.getElementById('btn-next');
+    const dotsWrap = document.getElementById('slider-dots');
+    const cards    = slider.querySelectorAll('.product-card');
+
+    // Berapa kartu tampil sekaligus sesuai lebar layar
+    function visibleCount() {
+        if (window.innerWidth < 640)  return 1;  // mobile
+        if (window.innerWidth < 1024) return 2;  // tablet
+        return 4;                                 // desktop
+    }
+
+    let current = 0;
+
+    function maxIndex() {
+        return Math.max(0, cards.length - visibleCount());
+    }
+
+    // Lebar 1 kartu + gap (gap-6 = 24px)
+    function cardWidth() {
+        return cards[0].offsetWidth + 24;
+    }
+
+    function goTo(index) {
+        current = Math.max(0, Math.min(index, maxIndex()));
+        slider.style.transform = `translateX(-${current * cardWidth()}px)`;
+        updateButtons();
+        updateDots();
+    }
+
+    function updateButtons() {
+        btnPrev.disabled = current === 0;
+        btnNext.disabled = current >= maxIndex();
+    }
+
+    function updateDots() {
+        const total = maxIndex() + 1;
+        dotsWrap.innerHTML = '';
+        for (let i = 0; i <= maxIndex(); i++) {
+            const dot = document.createElement('button');
+            dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${
+                i === current
+                    ? 'bg-primary w-6'
+                    : 'bg-outline-variant hover:bg-primary/50'
+            }`;
+            dot.addEventListener('click', () => goTo(i));
+            dotsWrap.appendChild(dot);
+        }
+    }
+
+    btnPrev.addEventListener('click', () => goTo(current - 1));
+    btnNext.addEventListener('click', () => goTo(current + 1));
+
+    // Reset posisi saat resize
+    window.addEventListener('resize', () => goTo(0));
+
+    // Swipe support untuk mobile
+    let touchStartX = 0;
+    slider.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+    slider.addEventListener('touchend',   e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+    });
+
+    // Inisialisasi
+    goTo(0);
+})();
+</script>
 
 <!-- Kontak Section -->
 <section class="py-stack-lg px-margin-mobile md:px-margin-desktop bg-surface-container-low" id="kontak">
@@ -253,7 +386,7 @@
     <div class="bg-surface-container-lowest p-8 md:p-12 rounded-xl ambient-shadow flex flex-col justify-between">
         <div class="space-y-8">
             <div>
-                <p class="font-label-caps text-label-caps text-secondary mb-2">Temukan Kami</p>
+                <p class="font-label-caps text-label-caps text-secondary mb-2">===</p>
                 <h2 class="font-headline-md text-headline-md text-primary">Find Your Peace 🌸</h2>
                 <p class="font-body-md text-on-surface-variant mt-2">Setiap sudut toko kami dirancang untuk menenangkan jiwa dan menginspirasi keindahan.</p>
             </div>
@@ -328,7 +461,7 @@
 
     <!-- Section Header -->
     <div class="text-center mb-stack-md">
-        <p class="font-label-caps text-label-caps text-secondary mb-2">Ikuti Kami di Sosial Media</p>
+        <p class="font-label-caps text-label-caps text-secondary mb-2">===</p>
         <h2 class="font-headline-lg text-headline-lg text-primary">Temukan Kami di Sini</h2>
     </div>
 
