@@ -129,27 +129,36 @@
         }
 
         /* =============================================
-           MOBILE ONLY — max-width: 639px
-           Desktop/tablet tidak tersentuh sama sekali
+           PHONE — max-width: 639px
            ============================================= */
         @media (max-width: 639px) {
 
-            /* FIX 1: Produk slider — 1 kartu penuh lebar layar */
+            /* Slider: 1 kartu penuh; padding section 20px × 2 = 40px */
             .product-card {
-                /* 100vw dikurangi padding section kiri+kanan (20px × 2 = 40px) */
                 width: calc(100vw - 40px) !important;
-                /* Pastikan kartu benar-benar flex-shrink:0 agar tidak gepeng */
                 flex-shrink: 0 !important;
             }
 
-            /* FIX 2: Instagram iframe — potong whitespace bawah,
-               sesuaikan dengan tinggi konten 6 foto (2 baris × 3 kolom).
-               Breakdown: header profil ~85px + row foto × 2 baris.
-               Lebar kontainer mobile ~335px → tiap foto ~112px.
-               2 baris foto = ~224px + gap + padding = ~350px.
-               Total dengan header dan sedikit buffer: ~460px.            */
+            /* Instagram iframe: pas untuk header profil + 2 baris × 3 foto
+               di lebar ~335px. Naikkan/turunkan 10–20px jika perlu.       */
             #ig-embed-frame {
                 height: 460px !important;
+            }
+        }
+
+        /* =============================================
+           PORTRAIT TABLET — 640px–1024px, orientasi tegak
+           Mencakup: iPad Mini (820), Zenbook Fold (853),
+                     Surface Pro 7 (912), iPad Pro (1024).
+           TIDAK menyentuh Nest Hub (1024×600, landscape)
+           maupun Nest Hub Max (1280×800, landscape).
+           ============================================= */
+        @media (min-width: 640px) and (max-width: 1024px) and (orientation: portrait) {
+
+            /* Slider: 1 kartu besar; padding section md = 64px × 2 = 128px */
+            .product-card {
+                width: calc(100vw - 128px) !important;
+                flex-shrink: 0 !important;
             }
         }
     </style>
@@ -182,10 +191,10 @@
     ID Florist
 </h1>
 <h2 class="font-headline-md text-headline-md text-tertiary">
-    Flower & Arrangement
+    Florist Elegan untuk Momen Spesial Anda
 </h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
-    Id Florist bukan sekadar toko bunga—kami adalah rumah bagi karya seni berbentuk rangkaian bunga, Setiap rangkaian bunga kami dirancang untuk menyampaikan cerita, emosi, dan makna yang tak terucapkan. <br><br> Di i.d Florist kami percaya bahwa bunga bukan hanya hiasan, tapi juga bahasa. Bahasa cinta, simpati, penghargaan, harapan, dan kebahagiaan. Kami mengolahnya dengan cita rasa tinggi dan sentuhan personal yang mencerminkan karakter serta pesan dari setiap pelanggan kami.
+    Kami menghadirkan rangkaian bunga pilihan dengan sentuhan seni yang mendalam, menciptakan keindahan abadi untuk setiap momen berharga Anda.
 </p>
 <div class="pt-4 flex flex-col sm:flex-row gap-4">
 <a class="inline-flex items-center justify-center bg-primary text-on-primary px-10 py-4 rounded-xl font-label-caps text-label-caps hover:bg-opacity-90 transition-all shadow-lg shadow-primary/10" href="https://wa.me/6285612345678" target="_blank">
@@ -338,8 +347,22 @@
     const cards    = slider.querySelectorAll('.product-card');
 
     function visibleCount() {
-        if (window.innerWidth < 640)  return 1;
-        if (window.innerWidth < 1024) return 2;
+        const w = window.innerWidth;
+        const isPortrait = window.innerHeight > w;
+
+        /* Phone (semua orientasi) → 1 kartu */
+        if (w < 640) return 1;
+
+        /* Portrait tablet 640–1024px:
+           iPad Mini (820), Zenbook Fold (853), Surface Pro 7 (912), iPad Pro (1024)
+           → 1 kartu besar.
+           Nest Hub (1024×600, landscape) TIDAK masuk sini karena isPortrait=false. */
+        if (w <= 1024 && isPortrait) return 1;
+
+        /* Landscape medium → 2 kartu */
+        if (w < 1024) return 2;
+
+        /* Desktop / Nest Hub / Nest Hub Max → 4 kartu */
         return 4;
     }
 
@@ -424,7 +447,7 @@
                 </div>
                 <div>
                     <p class="font-label-caps text-label-caps text-secondary mb-1">Address</p>
-                    <p class="font-body-md text-on-surface">Kalimulya, Kec. Cilodong, Kota Depok, Jawa Barat 16471</p>
+                    <p class="font-body-md text-on-surface">Jl. Ceger Raya No.11, RT.01/RW.11, Jurang Mangu Barat, Kec. Pd. Aren, Kota Tangerang Selatan, Banten 15223</p>
                 </div>
             </div>
 
@@ -459,7 +482,7 @@
     <div class="rounded-xl overflow-hidden ambient-shadow flex flex-col" style="min-height: 420px;">
         <div class="flex-1 relative">
             <iframe
-                src="https://maps.google.com/maps?q=Jl.+Aridho+Jatimulya,+Cilodong,+Depok+City,+West+Java+16413&output=embed&z=16"
+                src="https://maps.google.com/maps?q=Jl.+Ceger+Raya+No.11+Jurang+Mangu+Barat+Tangerang+Selatan+Banten+15223&output=embed&z=16"
                 width="100%"
                 height="100%"
                 style="border:0; display:block; min-height: 360px;"
@@ -469,7 +492,7 @@
                 title="Lokasi ID Florist">
             </iframe>
         </div>
-        <a href="https://maps.app.goo.gl/PC5tH5VArWrA86uD9"
+        <a href="https://maps.app.goo.gl/4BYeCJgnqjVKymGh6"
            target="_blank"
            class="flex items-center justify-center gap-2 bg-surface-container-lowest text-on-surface-variant py-4 px-6 font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all">
             <span class="material-symbols-outlined text-[18px]">open_in_new</span>
