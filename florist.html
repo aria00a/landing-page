@@ -247,42 +247,77 @@
 <!-- Kontak Section -->
 <section class="py-stack-lg px-margin-mobile md:px-margin-desktop bg-surface-container-low" id="kontak">
 <div class="max-w-container-max mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<!-- Contact Card -->
-<div class="bg-surface-container-lowest p-8 md:p-12 rounded-xl ambient-shadow flex flex-col justify-between">
-<div>
-<div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-container text-primary mb-6">
-<span class="material-symbols-outlined">chat_bubble</span>
-</div>
-<h2 class="font-headline-md text-headline-md text-primary mb-4">Konsultasi Gratis</h2>
-<p class="font-body-md text-on-surface-variant mb-8">Punya permintaan khusus atau ingin memesan untuk acara besar? Tim admin kami siap membantu mewujudkan ide Anda.</p>
-<div class="flex items-center gap-3 mb-8">
-<span class="material-symbols-outlined text-primary">call</span>
-<span class="font-body-lg font-bold">0856 9597 1455</span>
-</div>
-</div>
-<a class="w-full text-center bg-primary text-on-primary py-4 rounded-xl font-label-caps text-label-caps hover:bg-opacity-90 transition-all" href="https://wa.me/6285612345678" target="_blank">
-    Chat Admin
-</a>
-</div>
-<!-- Find Us Card -->
-<div class="relative bg-tertiary text-on-tertiary p-8 md:p-12 rounded-xl ambient-shadow overflow-hidden">
-<div class="absolute top-0 right-0 p-12 opacity-10">
-<span class="material-symbols-outlined text-[160px]">location_on</span>
-</div>
-<div class="relative z-10 h-full flex flex-col justify-between">
-<div>
-<div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 text-white mb-6">
-<span class="material-symbols-outlined">map</span>
-</div>
-<h2 class="font-headline-md text-headline-md mb-4 text-surface">Kunjungi Galeri Kami</h2>
-<p class="font-body-md text-surface-container-highest mb-8">Rasakan langsung kesegaran dan keindahan bunga-bunga kami di studio fisik kami yang nyaman dan penuh inspirasi.</p>
-</div>
-<a class="w-full text-center bg-white text-tertiary py-4 rounded-xl font-label-caps text-label-caps hover:bg-surface transition-all" href="https://maps.app.goo.gl/4BYeCJgnqjVKymGh6" target="_blank">
-    Find Us
-</a>
-</div>
-</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+
+    <!-- KIRI: Info -->
+    <div class="bg-surface-container-lowest p-8 md:p-12 rounded-xl ambient-shadow flex flex-col justify-between">
+        <div class="space-y-8">
+            <div>
+                <p class="font-label-caps text-label-caps text-secondary mb-2">Temukan Kami</p>
+                <h2 class="font-headline-md text-headline-md text-primary">Find Your Peace 🌸</h2>
+                <p class="font-body-md text-on-surface-variant mt-2">Setiap sudut toko kami dirancang untuk menenangkan jiwa dan menginspirasi keindahan.</p>
+            </div>
+
+            <!-- Address -->
+            <div class="flex gap-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-container flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+                </div>
+                <div>
+                    <p class="font-label-caps text-label-caps text-secondary mb-1">Address</p>
+                    <p class="font-body-md text-on-surface">Jl. Ceger Raya No.11, RT.01/RW.11, Jurang Mangu Barat, Kec. Pd. Aren, Kota Tangerang Selatan, Banten 15223</p>
+                </div>
+            </div>
+
+            <!-- Hours -->
+            <div class="flex gap-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-container flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary text-[20px]">schedule</span>
+                </div>
+                <div>
+                    <p class="font-label-caps text-label-caps text-secondary mb-1">Hours</p>
+                    <p class="font-body-md text-on-surface">Everyday: 08:00 AM – 21:00 PM</p>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="flex gap-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-container flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary text-[20px]">call</span>
+                </div>
+                <div>
+                    <p class="font-label-caps text-label-caps text-secondary mb-1">Contact</p>
+                    <a href="https://wa.me/6285695971455" target="_blank"
+                       class="font-body-md text-on-surface font-semibold hover:text-primary transition-colors">
+                        +62 856 9597 1455
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KANAN: Google Maps -->
+    <div class="rounded-xl overflow-hidden ambient-shadow flex flex-col" style="min-height: 420px;">
+        <div class="flex-1 relative">
+            <iframe
+                src="https://maps.google.com/maps?q=Jl.+Ceger+Raya+No.11+Jurang+Mangu+Barat+Tangerang+Selatan+Banten+15223&output=embed&z=16"
+                width="100%"
+                height="100%"
+                style="border:0; display:block; min-height: 360px;"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lokasi Petals & Poetry">
+            </iframe>
+        </div>
+        <a href="https://maps.app.goo.gl/4BYeCJgnqjVKymGh6"
+           target="_blank"
+           class="flex items-center justify-center gap-2 bg-surface-container-lowest text-on-surface-variant py-4 px-6 font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all">
+            <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+            Open in Maps
+        </a>
+    </div>
+
 </div>
 </div>
 </section>
@@ -321,7 +356,7 @@
                 <iframe
                     id="ig-embed-frame"
                     src=""
-                    style="width:100%; height:600px; border:none; display:block;"
+                    style="width:100%; height:880px; border:none; display:block;"
                     scrolling="no"
                     allowtransparency="true"
                     title="Instagram Feed @tokbung_id.florist">
@@ -345,8 +380,8 @@
                     Lihat
                 </a>
             </div>
-            <!-- TikTok 3 posts, stacked -->
-            <div class="flex flex-col gap-4">
+            <!-- TikTok 3 posts, horizontal grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <blockquote class="tiktok-embed"
                     cite="https://www.tiktok.com/@flo3522/photo/7568474151556582674"
                     data-video-id="7568474151556582674"
