@@ -5,8 +5,8 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>ID Florist | Boutique Florist</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -127,6 +127,25 @@
             border: none !important;
             border-radius: 12px;
             overflow: hidden;
+        }
+
+        /* =============================================
+           MOBILE ONLY — max-width: 639px
+           Desktop/tablet tidak tersentuh sama sekali
+           ============================================= */
+        @media (max-width: 639px) {
+
+            /* Produk slider: 1 kartu penuh */
+            .product-card {
+                width: calc(100vw - 40px) !important; /* 100% layar - padding kiri kanan */
+            }
+
+            /* Instagram iframe: potong ruang kosong,
+               hanya tampilkan area 6 foto (2 baris × 3 kolom)
+               ditambah header profil ~120px */
+            #ig-embed-frame {
+                height: 500px !important;
+            }
         }
     </style>
 </head>
@@ -313,11 +332,10 @@
     const dotsWrap = document.getElementById('slider-dots');
     const cards    = slider.querySelectorAll('.product-card');
 
-    // Berapa kartu tampil sekaligus sesuai lebar layar
     function visibleCount() {
-        if (window.innerWidth < 640)  return 1;  // mobile
-        if (window.innerWidth < 1024) return 2;  // tablet
-        return 4;                                 // desktop
+        if (window.innerWidth < 640)  return 1;
+        if (window.innerWidth < 1024) return 2;
+        return 4;
     }
 
     let current = 0;
@@ -326,7 +344,6 @@
         return Math.max(0, cards.length - visibleCount());
     }
 
-    // Lebar 1 kartu + gap (gap-6 = 24px)
     function cardWidth() {
         return cards[0].offsetWidth + 24;
     }
@@ -344,14 +361,11 @@
     }
 
     function updateDots() {
-        const total = maxIndex() + 1;
         dotsWrap.innerHTML = '';
         for (let i = 0; i <= maxIndex(); i++) {
             const dot = document.createElement('button');
             dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${
-                i === current
-                    ? 'bg-primary w-6'
-                    : 'bg-outline-variant hover:bg-primary/50'
+                i === current ? 'bg-primary w-6' : 'bg-outline-variant hover:bg-primary/50'
             }`;
             dot.addEventListener('click', () => goTo(i));
             dotsWrap.appendChild(dot);
@@ -361,10 +375,8 @@
     btnPrev.addEventListener('click', () => goTo(current - 1));
     btnNext.addEventListener('click', () => goTo(current + 1));
 
-    // Reset posisi saat resize
     window.addEventListener('resize', () => goTo(0));
 
-    // Swipe support untuk mobile
     let touchStartX = 0;
     slider.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
     slider.addEventListener('touchend',   e => {
@@ -372,7 +384,6 @@
         if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
     });
 
-    // Inisialisasi
     goTo(0);
 })();
 </script>
@@ -465,12 +476,10 @@
         <h2 class="font-headline-lg text-headline-lg text-primary">Temukan Kami di Sini</h2>
     </div>
 
-    <!-- Side by side on md+, stacked on mobile -->
     <div class="grid grid-cols-1 gap-12">
 
-        <!-- ── Instagram ── -->
+        <!-- Instagram -->
         <div id="instagram-col">
-            <!-- Label -->
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <p class="font-label-caps text-label-caps text-secondary mb-1">Instagram</p>
@@ -484,7 +493,6 @@
                     Lihat
                 </a>
             </div>
-            <!-- Instagram iframe -->
             <div class="rounded-2xl overflow-hidden ambient-shadow" style="box-shadow: 0 8px 32px rgba(111,89,87,0.10);">
                 <iframe
                     id="ig-embed-frame"
@@ -497,9 +505,8 @@
             </div>
         </div>
 
-        <!-- ── TikTok ── -->
+        <!-- TikTok -->
         <div id="tiktok">
-            <!-- Label -->
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <p class="font-label-caps text-label-caps text-secondary mb-1">TikTok</p>
@@ -513,7 +520,6 @@
                     Lihat
                 </a>
             </div>
-            <!-- TikTok 3 posts, horizontal grid -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <blockquote class="tiktok-embed"
                     cite="https://www.tiktok.com/@flo3522/photo/7568474151556582674"
@@ -578,7 +584,6 @@
 </footer>
 
 <script>
-    // Smooth reveal on scroll
     document.addEventListener('DOMContentLoaded', () => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -594,7 +599,6 @@
             observer.observe(el);
         });
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -602,7 +606,6 @@
             });
         });
 
-        // Sticky nav shrink
         const nav = document.querySelector('nav');
         window.addEventListener('scroll', () => {
             nav.classList.toggle('h-16', window.scrollY > 50);
