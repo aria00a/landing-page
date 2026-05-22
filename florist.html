@@ -133,18 +133,25 @@
            ============================================= */
         @media (max-width: 639px) {
 
+            /* Slider: 1 kartu penuh; padding section 20px × 2 = 40px */
             .product-card {
                 width: calc(100vw - 40px) !important;
                 flex-shrink: 0 !important;
             }
 
+            /* Instagram iframe: pas untuk header profil + 2 baris × 3 foto
+               di lebar ~335px. Naikkan/turunkan 10–20px jika perlu.       */
             #ig-embed-frame {
                 height: 460px !important;
             }
         }
 
         /* =============================================
-           PORTRAIT TABLET — 640px–1024px
+           PORTRAIT TABLET — 640px–1024px, orientasi tegak
+           Mencakup: iPad Mini (820), Zenbook Fold (853),
+                     Surface Pro 7 (912), iPad Pro (1024).
+           TIDAK menyentuh Nest Hub (1024×600, landscape)
+           maupun Nest Hub Max (1280×800, landscape).
            ============================================= */
         @media (min-width: 640px) and (max-width: 1024px) and (orientation: portrait) {
 
@@ -158,27 +165,36 @@
 </head>
 <body class="bg-surface text-on-surface font-body-md">
 <!-- ============================================================
-  00a Template Config
+  ✏️  KONFIGURASI TOKO — Edit bagian ini saja
+  Semua nilai di sini otomatis diterapkan ke seluruh halaman.
   ============================================================ -->
 <script>
 const CONFIG = {
   // 1. WhatsApp
-  wa_url:   "https://wa.me/6283818597520",
-  wa_label: "+62 838 1859 7520",
+  wa_url:   "https://wa.me/6283818597520",   // nomor WA (format internasional)
+  wa_label: "+62 838 1859 7520",             // teks yang ditampilkan di halaman
 
   // 2. Google Maps
   maps_iframe: "https://www.google.com/maps?q=-6.444162368774414,106.81909942626953&z=17&output=embed&z=16",
   maps_link:   "https://maps.app.goo.gl/qd4vCS2RGLzpSDPW8",
 
   // 3. Instagram
-  ig_username: "tokbung_id.florist",
+  ig_show: "ON",
+  ig_username: "tokbung_id.florist",         // tanpa tanda @
   ig_url:      "https://www.instagram.com/tokbung_id.florist",
 
   // 4. TikTok
-  tt_username: "flo3522",
+  tt_show: "ON",
+  tt_username: "flo3522",                    // tanpa tanda @
   tt_url:      "https://www.tiktok.com/@flo3522",
+
 };
 </script>
+<!-- ============================================================
+  ⛔  Jangan edit di bawah garis ini kecuali kamu tahu apa yang dilakukan
+  ============================================================ -->
+
+
 
 <!-- TopNavBar -->
 <nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md shadow-sm">
@@ -210,7 +226,6 @@ const CONFIG = {
 </h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
     ID Florist bukan sekadar toko bunga. Kami adalah rumah bagi karya seni berbentuk rangkaian bunga, Setiap rangkaian bunga kami dirancang untuk menyampaikan cerita, emosi, dan makna yang tak terucapkan. <br><br>Kami percaya bahwa bunga bukan hanya hiasan, tapi juga bahasa. Bahasa cinta, simpati, penghargaan, harapan, dan kebahagiaan. Kami mengolahnya dengan cita rasa tinggi dan sentuhan personal yang mencerminkan karakter serta pesan dari setiap pelanggan kami.
-
 </p>
 <div class="pt-4 flex flex-col sm:flex-row gap-4">
 <a id="cfg-wa-chat" class="inline-flex items-center justify-center bg-primary text-on-primary px-10 py-4 rounded-xl font-label-caps text-label-caps hover:bg-opacity-90 transition-all shadow-lg shadow-primary/10" href="#" target="_blank">
@@ -256,6 +271,24 @@ const CONFIG = {
 <!-- Slider wrapper -->
 <div class="overflow-hidden">
     <div id="product-slider" class="flex gap-6 transition-transform duration-500 ease-in-out">
+
+        <!--
+        =======================================================
+          PANDUAN GANTI GAMBAR & INFO PRODUK
+        =======================================================
+          Semua gambar disimpan di folder: content/
+          Contoh: content/a-01.jpg, content/a-02.jpg, dst.
+
+          Untuk setiap produk, yang bisa kamu ubah:
+            [IMG]   → src="content/NAMA-FILE.jpg"
+            [LABEL] → kategori kecil di atas (huruf kapital)
+            [NAMA]  → nama produk
+            [HARGA] → harga produk
+
+          Untuk tambah produk: copy satu blok produk,
+          paste setelah produk terakhir, ganti isinya.
+        =======================================================
+        -->
 
         <!-- ======= PRODUK 1 ======= -->
         <div class="product-card flex-shrink-0 w-[calc(25%-18px)] bg-surface-container-lowest p-4 rounded-xl ambient-shadow transition-transform duration-500 hover:-translate-y-2 group">
@@ -351,12 +384,16 @@ const CONFIG = {
         /* Phone (semua orientasi) → 1 kartu */
         if (w < 640) return 1;
 
-        /* Portrait tablet 640–1024px → 1 kartu besar. */
+        /* Portrait tablet 640–1024px:
+           iPad Mini (820), Zenbook Fold (853), Surface Pro 7 (912), iPad Pro (1024)
+           → 1 kartu besar.
+           Nest Hub (1024×600, landscape) TIDAK masuk sini karena isPortrait=false. */
         if (w <= 1024 && isPortrait) return 1;
 
         /* Landscape medium → 2 kartu */
         if (w < 1024) return 2;
 
+        /* Desktop / Nest Hub / Nest Hub Max → 4 kartu */
         return 4;
     }
 
@@ -366,7 +403,11 @@ const CONFIG = {
         return Math.max(0, cards.length - visibleCount());
     }
 
-    /* SLIDER MOBILE */
+    /* FIX 1 — SLIDER MOBILE
+       Baca cardWidth() setelah CSS mobile sudah benar-benar ter-apply.
+       Sebelumnya: cards[0].offsetWidth bisa terbaca lebar desktop kalau
+       dijalankan terlalu awal. Kini pakai requestAnimationFrame supaya
+       browser sudah selesai render layout sebelum kita ukur. */
     function cardWidth() {
         return cards[0].offsetWidth + 24; /* 24 = gap-6 */
     }
@@ -461,6 +502,7 @@ const CONFIG = {
                     <p class="font-label-caps text-label-caps text-secondary mb-1">Contact</p>
                     <a id="cfg-wa-contact" href="#" target="_blank"
                        class="font-body-md text-on-surface font-semibold hover:text-primary transition-colors">
+                        +62 838 1859 7520
                     </a>
                 </div>
             </div>
@@ -510,7 +552,7 @@ const CONFIG = {
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <p class="font-label-caps text-label-caps text-secondary mb-1">Instagram</p>
-                    <h3 id="cfg-ig-label" class="font-headline-md text-headline-md text-primary"></h3>
+                    <h3 id="cfg-ig-label" class="font-headline-md text-headline-md text-primary">@tokbung_id.florist</h3>
                 </div>
                 <a id="cfg-ig-link" href="#" target="_blank"
                    class="inline-flex items-center gap-2 border border-outline-variant text-on-surface-variant px-4 py-2 rounded-xl font-label-caps text-label-caps hover:border-primary hover:text-primary transition-all text-xs">
@@ -526,17 +568,18 @@ const CONFIG = {
                     src=""
                     style="width:100%; height:880px; border:none; display:block;"
                     scrolling="no"
-                    allowtransparency="true">
+                    allowtransparency="true"
+                    title="Instagram Feed @tokbung_id.florist">
                 </iframe>
             </div>
         </div>
 
         <!-- TikTok -->
-        <div id="tiktok">
+        <div id="cfg-tt-section">
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <p class="font-label-caps text-label-caps text-secondary mb-1">TikTok</p>
-                    <h3 id="cfg-tt-label" class="font-headline-md text-headline-md text-primary"></h3>
+                    <h3 id="cfg-tt-label" class="font-headline-md text-headline-md text-primary">@flo3522</h3>
                 </div>
                 <a id="cfg-tt-link" href="#" target="_blank"
                    class="inline-flex items-center gap-2 border border-outline-variant text-on-surface-variant px-4 py-2 rounded-xl font-label-caps text-label-caps hover:border-primary hover:text-primary transition-all text-xs">
@@ -573,7 +616,17 @@ const CONFIG = {
 </section>
 
 <script>
-    /* INSTAGRAM IFRAME */
+    /* FIX 2 — INSTAGRAM IFRAME
+       Masalah sebelumnya: wp=640 hardcoded, jadi di mobile iframe memuat
+       konten selebar 640px ke dalam kontainer yang jauh lebih sempit,
+       lalu sisa bawah jadi whitespace kosong.
+
+       Solusi:
+       1. Baca lebar kontainer yang sebenarnya (bukan 640px statis).
+       2. Kirim nilai wp yang sesuai → Instagram render grid yang pas.
+       3. Height mobile di-override via CSS menjadi 460px (cukup untuk
+          header profil + 2 baris × 3 foto).
+    */
     (function() {
         const username = (typeof CONFIG !== 'undefined') ? CONFIG.ig_username : 'tokbung_id.florist';
         const frame    = document.getElementById('ig-embed-frame');
@@ -692,6 +745,22 @@ const CONFIG = {
     const el = document.getElementById(id);
     if (el) el.href = C.tt_url;
   });
+
+  // Feature switch: Instagram
+  if (C.ig_show === 'OFF') {
+    const igSection = document.getElementById('instagram-col');
+    const igFooter  = document.getElementById('cfg-ig-footer');
+    if (igSection) igSection.style.display = 'none';
+    if (igFooter)  igFooter.style.display  = 'none';
+  }
+
+  // Feature switch: TikTok
+  if (C.tt_show === 'OFF') {
+    const ttSection = document.getElementById('cfg-tt-section');
+    const ttFooter  = document.getElementById('cfg-tt-footer');
+    if (ttSection) ttSection.style.display = 'none';
+    if (ttFooter)  ttFooter.style.display  = 'none';
+  }
 })();
 </script>
 </body></html>
